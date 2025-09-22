@@ -1,0 +1,16 @@
+	// Ожидание нажатия клавиши перед выходом
+	void getEnter()	{
+	cout << "\n\nНажмите Enter для завершения...";
+	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+	cin.clear();
+	cin.get(); 
+	}
+
+	enum ExitCode {
+	SUCCESS,
+	SPECIAL_CASE_ZERO,
+	INVALID_INPUT 
+};
+
+	SetConsoleOutputCP(1251);
+    setlocale(LC_ALL,"Russian");
