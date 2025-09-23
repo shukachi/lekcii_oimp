@@ -62,15 +62,21 @@ int main()
     }
     while(n > 0);
 
-    n = original_n; 
-    do {
-        term = n % 10;
+    n = original_n;
+    unsigned int divisor = 1;
+    while (divisor <= n / 10) {
+        divisor *= 10;
+    }
+
+    cout << "Результат: ";
+    while (divisor > 0) {
+        term = n / divisor; 
         if (term != max) {
             cout << term;
         }
-        n /= 10;
+        n %= divisor;       
+        divisor /= 10;      
     }
-    while(n > 0);
 
 getEnter();
 return SUCCESS;
