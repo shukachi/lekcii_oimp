@@ -12,7 +12,7 @@
 				"sh.test.exe"
             ],
             "options": {
-				"cwd": "${workspaceFolder}/lec_02/lec_02_01"
+				"cwd": "${workspaceFolder}/laba_2"
             },
             "group": "build",
             "problemMatcher": [
@@ -22,7 +22,7 @@
         {
             "type": "cppbuild",
             "label": "C/C++: gcc.exe build active file",
-            "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",

@@ -22,9 +22,9 @@ bool allDigitsSame(int n) {
 }
 
 	void getEnter()	{
-	cout << "\n\nÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Enter Ð´Ð»Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ...";
+	cout << "\n\nÍàæìèòå Enter äëÿ çàâåðøåíèÿ...";
+    cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-	cin.clear();
 	cin.get(); 
 	}
 int main()
@@ -33,21 +33,21 @@ int main()
     setlocale(LC_ALL,"Russian");    
 
     unsigned int n, term, max = 0;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ N: ";
+    cout << "Ââåäèòå ÷èñëî N: ";
     cin >> n;
 
     if (cin.fail() || n < 1) {
-        cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ n!" << endl;
+        cout << "Íåâåðíûé n!" << endl;
         getEnter();
         return INVALID_INPUT;
     }
     if (n / 10 == 0) {
-        cout << n << " - Ð¾Ð´Ð½Ð¾Ð·Ð½Ð°Ñ‡Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾" << endl;
+        cout << n << " - îäíîçíà÷íîå ÷èñëî" << endl;
         getEnter();
         return SUCCESS;
     }
     if (allDigitsSame(n)) {
-        cout << "0; Ñ‡Ð¸ÑÐ»Ð¾ ÑÐ¾ÑÑ‚Ð¾Ð¸Ñ‚ Ð¸Ð· Ð¾Ð´Ð¸Ð½Ð°ÐºÐ¾Ð²Ñ‹Ñ… Ñ†Ð¸Ñ„Ñ€";
+        cout << "0; ÷èñëî ñîñòîèò èç îäèíàêîâûõ öèôð";
         getEnter();
         return SUCCESS;
     }
@@ -68,7 +68,7 @@ int main()
         divisor *= 10;
     }
 
-    cout << "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: ";
+    cout << "Ðåçóëüòàò: ";
     while (divisor > 0) {
         term = n / divisor; 
         if (term != max) {

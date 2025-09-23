@@ -23,9 +23,9 @@ bool isprime(int num){
     return true;
 }
 	void getEnter()	{
-	cout << "\n\nĞĞ°Ğ¶Ğ¼Ğ¸Ñ‚Ğµ Enter Ğ´Ğ»Ñ Ğ·Ğ°Ğ²ĞµÑ€ÑˆĞµĞ½Ğ¸Ñ...";
+	cout << "\n\nÍàæìèòå Enter äëÿ çàâåğøåíèÿ...";
+    cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-	cin.clear();
 	cin.get(); 
 	}
 int main()
@@ -34,14 +34,14 @@ int main()
     setlocale(LC_ALL,"Russian");
 
     unsigned int n;
-    cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾ N: ";
+    cout << "Ââåäèòå ÷èñëî N: ";
     cin >> n;
     if (cin.fail() || n < 1) {
-        cout << "ĞĞµĞ²ĞµÑ€Ğ½Ñ‹Ğ¹ n!" << endl;
+        cout << "Íåâåğíûé n!" << endl;
         getEnter();
         return INVALID_INPUT;
     }
-    cout << "ĞŸÑ€Ğ¾ÑÑ‚Ñ‹Ğµ Ñ‡Ğ¸ÑĞ»Ğ° Ğ´Ğ¾ " << n << ":\t";
+    cout << "Ïğîñòûå ÷èñëà äî " << n << ":\t";
     for (int i = 2; i < n; i++)
     {
         if (isprime(i)){

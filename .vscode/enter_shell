@@ -1,8 +1,8 @@
 	// Ожидание нажатия клавиши перед выходом
 	void getEnter()	{
 	cout << "\n\nНажмите Enter для завершения...";
-	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 	cin.get(); 
 	}
 

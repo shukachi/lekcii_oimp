@@ -33,9 +33,9 @@ INVALID_INPUT
 };
 
 	void getEnter()	{
-	cout << "\n\nÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Enter Ð´Ð»Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ...";
+	cout << "\n\nÍàæìèòå Enter äëÿ çàâåðøåíèÿ...";
+    cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-	cin.clear();
 	cin.get(); 
 	}
 int main()
@@ -44,10 +44,10 @@ int main()
     setlocale(LC_ALL,"Russian");
 
     unsigned int a,b;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð» [a,b] Ñ‡ÐµÑ€ÐµÐ· Ð¿Ñ€Ð¾Ð±ÐµÐ»: ";
+    cout << "Ââåäèòå èíòåðâàë [a,b] ÷åðåç ïðîáåë: ";
     cin >> a >> b;
     if (cin.fail() || a > b) {
-        cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»!" << endl;
+        cout << "Íåâåðíûé èíòåðâàë!" << endl;
         getEnter();
         return INVALID_INPUT;
     }
