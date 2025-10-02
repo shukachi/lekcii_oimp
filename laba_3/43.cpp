@@ -10,53 +10,64 @@ SUCCESS,
 INVALID_INPUT 
 };
 
-void getEnter();
+char choose_design();
+void write_design(char elem);
+void getEnter(char elem);
 bool aproove();
-void choose(int size,double arr[]);
-void multiply(int size,double arr[]);
-void bubbleSort(int size,double arr[]);
-void unic_num(int size,double arr[]);
+void choose(int size,double arr[],char elem);
+void multiply(int size,double arr[],char elem);
+void bubbleSort(int size,double arr[],char elem);
+void unic_num(int size,double arr[],char elem);
 void clear_input();
-void random(int size,double arr[]);
-void custom(int size,double arr[]);
+void random(int size,double arr[],char elem);
+void custom(int size,double arr[],char elem);
 void output_arr(int size,double arr[]);
-void sort_arr(int size,double arr[]);
+void sort_arr(int size,double arr[],char elem);
 
 int main()
 {
     const int m_size = 1000;
     double arr[m_size];
     int n;
+    char design_char = choose_design();
+    write_design(design_char);
     cout << "\nInput size of array (n): ";
     cin >> n;
+    cout << endl;
 
     while(cin.fail() || n < 1 || n > m_size)
     {
+        write_design(design_char);
         cout << "\nInvalid input. Please enter a number between 1 and " << m_size << ": ";
         clear_input();
         cin >> n;
+        cout << endl;
     }
-    choose(n, arr);
+    choose(n, arr,design_char);
 
     double temp_arr[m_size];
 
     copy(arr, arr + n, temp_arr);
-    bubbleSort(n, temp_arr); 
-    unic_num(n, temp_arr);   
+    bubbleSort(n, temp_arr,design_char); 
+    unic_num(n, temp_arr,design_char);   
 
     copy(arr, arr + n, temp_arr);
-    multiply(n, temp_arr); 
+    multiply(n, temp_arr,design_char); 
 
     copy(arr, arr + n, temp_arr);
-    sort_arr(n, temp_arr);
+    sort_arr(n, temp_arr,design_char);
 
-    getEnter();
+    getEnter(design_char);
 
     return SUCCESS;
 }
-void getEnter()	
+void getEnter(char elem)	
 {
-	cout << "\n\nPress Enter to finish...";
+    write_design(elem);
+    cout << "\n\n";
+    write_design(elem);
+	cout << "Press Enter to finish...\n";
+    write_design(elem);
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 	cin.get(); 
@@ -71,9 +82,9 @@ void output_arr(int size,double arr[])
     cout << endl;
 }
 
-void sort_arr(int size, double arr[])
+void sort_arr(int size, double arr[],char elem)
 {
-    cout << "\n\nSorted array with negative numbers moved to the front:";
+    cout << "\nSorted array with negative numbers moved to the front: ";
     int write_idx = 0; 
     for (int i = 0; i < size; i++)
     {
@@ -85,16 +96,18 @@ void sort_arr(int size, double arr[])
             write_idx++;
         }
     }
-    cout << endl;
     output_arr(size, arr);
+    cout << endl;
 }
 
 
-void multiply(int size, double arr[])
+void multiply(int size, double arr[],char elem)
 {
     if (size == 1)
     {
-        cout << "\nArray consists of 1 element: " << arr[0] << endl;
+        write_design(elem);
+        cout << "\nArray consists of 1 element: " << arr[0] << "\n" << endl;
+        write_design(elem);
         return;
     }
     int max_idx = 0;
@@ -108,21 +121,26 @@ void multiply(int size, double arr[])
     }
     if((max_idx == (size - 1)) && (size != 1))
     {
-        cout << "Undefined. Nothing after max element";
+        write_design(elem);
+        cout << "\nUndefined. Nothing after max element" << "\n" << endl;
+        write_design(elem);
         return;
     }
     for(int i = max_idx + 1; i < size; i++)
     {
         result *= arr[i];
     }
-    cout << "\nMultiplication: " << result;
+    write_design(elem);
+    cout << "\nMultiplication: " << result << "\n" << endl;
+    write_design(elem);
 }
 
-void unic_num(int size, double arr[])
+void unic_num(int size, double arr[],char elem)
 {
     if (size == 1)
     {
-        cout << "\nArray consists of 1 element: " << arr[0] << endl;
+        write_design(elem);
+        cout << "\nArray consists of 1 element: " << arr[0] << "\n" << endl;
         return;
     }
     int k = 0;
@@ -133,10 +151,11 @@ void unic_num(int size, double arr[])
             k++;
         }
     }
-    cout << "\nNumber of unique elements: " << k << endl;    
+    write_design(elem);
+    cout << "\nNumber of unique elements: " << k << "\n"<< endl;    
 }
 
-void bubbleSort(int size,double arr[]) 
+void bubbleSort(int size,double arr[],char elem) 
 {
     for (int i = 0; i < size - 1; ++i) 
     {
@@ -150,8 +169,10 @@ void bubbleSort(int size,double arr[])
             }
         }
     }
-    cout << "\n\nSorted (by bubble sort) array: ";
+    write_design(elem);
+    cout << "\nSorted (by bubble sort) array: ";
     output_arr(size,arr);
+    cout << endl;
 }
 
 inline void clear_input()
@@ -160,40 +181,49 @@ inline void clear_input()
 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 }
 
-void random(int size, double arr[])
+void random(int size, double arr[],char elem)
 {
     int a,b;
     cout << "\nSet the interval [a,b] with space: ";
     cin >> a >> b;
+    cout << endl;
     while((cin.fail() || a > b)) 
     {
-        cout << "\nInvalid interval!" << endl;
+        write_design(elem);
+        cout << "\nInvalid interval!" << "\n" << endl;
+        write_design(elem);
         clear_input();
         cin >> a >> b;
     }
     srand(time(0)); 
+    write_design(elem);
     cout << "\nRandom array: ";
     for (int i = 0; i < size; i++)
     {
         arr[i] = a + rand() % (b - a + 1);
         cout << arr[i] << " ";
     }
+    cout << "\n" << endl;
 }
 
-void custom(int size, double arr[])
+void custom(int size, double arr[],char elem)
 {
-    cout << "\nEnter array elements: ";
+    cout << "\nEnter array elements:" << endl;
+    write_design(elem);
     for(int i = 0; i < size; i++)
     {
     cin >> arr[i];
-    cout << arr[i] << " ";
         while(cin.fail())
         {
-            cout << "\nInvalid input. Please enter double values." << endl;
+            write_design(elem);
+            cout << "\nInvalid input. Please enter double values." << "\n" << endl;
+            write_design(elem);
             clear_input();
             if(aproove())
             {
-                cout << "\nEnter array elements: ";
+                write_design(elem);
+                cout << "\nEnter array elements:" << endl;
+                write_design(elem);
                 break;
             }
             else
@@ -204,31 +234,36 @@ void custom(int size, double arr[])
     }
 }
 
-void choose(int size, double arr[])
+void choose(int size, double arr[],char elem)
 {
     char num;
+    write_design(elem);
+    cout << endl;
     cout << "How do you want to fill the array?" << endl;
     cout << "Choose an option:" << endl;
     cout << "1. Option random (write 1)" << endl;
     cout << "2. Option custom (write 2)\n" << endl;
+    write_design(elem);
     cin >> num;
+    write_design(elem);
 
     switch (num)
     {
     case '1':
-        random(size, arr);
+        random(size, arr,elem);
         break;
     case '2':
-        custom(size, arr);
+        custom(size, arr,elem);
         break;
     default:
         if(num != '1' || num != '2' || cin.fail())
         {
-            cout << "\nInvalid input. Please enter 1 or 2." << endl;
+            cout << "\nInvalid input. Please enter 1 or 2." << "\n" << endl;
+            write_design(elem);
             clear_input();
             if(aproove())
             {
-                choose(size, arr);
+                choose(size, arr,elem);
             } 
             else
             {
@@ -243,6 +278,7 @@ bool aproove()
     char answer;
     cout << "\nDo you want to continue? (y/n): ";
     cin >> answer;
+    cout << endl;
     switch (answer)
     {
     case 'y':
@@ -252,8 +288,23 @@ bool aproove()
     return false;
         break;
     default:
-        cout << "\nInvalid input. Please enter 'y' or 'n'." << endl;
+        cout << "Invalid input. Please enter 'y' or 'n'." << endl;
         clear_input();
         return aproove(); 
     }
+}
+char choose_design()
+{
+    char elem;
+    cout << "what design do you want to use? ";
+    cin >> elem;
+    return elem; 
+}
+void write_design(char elem)
+{
+    for(int i = 0; i < 50; i++)
+    {
+        cout << elem;
+    }  
+    cout << endl;
 }
