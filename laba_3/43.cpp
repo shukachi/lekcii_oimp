@@ -2,6 +2,7 @@
 #include <cmath>
 #include <limits>
 #include <time.h>
+#include <conio.h>
 using namespace std;
 
 enum ExitCode 
@@ -26,7 +27,7 @@ void sort_arr(int size,double arr[],char elem);
 
 int main()
 {
-    const int m_size = 1000;
+    const int m_size = 100000;
     double arr[m_size];
     int n;
     char design_char = choose_design();
@@ -130,6 +131,14 @@ void multiply(int size, double arr[],char elem)
     {
         result *= arr[i];
     }
+    if(result == -0)
+    {
+        result = 0;
+        write_design(elem);
+        cout << "\nMultiplication: " << result << "\n" << endl;
+        write_design(elem);
+        return;
+    }
     write_design(elem);
     cout << "\nMultiplication: " << result << "\n" << endl;
     write_design(elem);
@@ -208,7 +217,7 @@ void random(int size, double arr[],char elem)
 
 void custom(int size, double arr[],char elem)
 {
-    cout << "\nEnter array elements:" << endl;
+    cout << "\nEnter array elements separated by spaces:" << endl;
     write_design(elem);
     for(int i = 0; i < size; i++)
     {
@@ -296,9 +305,10 @@ bool aproove()
 char choose_design()
 {
     char elem;
-    cout << "what design do you want to use? ";
-    cin >> elem;
-    return elem; 
+    cout << "what element do you want to use for design? ";
+    elem = getche(); 
+    cout << endl;    
+    return elem;     
 }
 void write_design(char elem)
 {
