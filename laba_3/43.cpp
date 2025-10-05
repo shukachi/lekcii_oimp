@@ -11,8 +11,8 @@ SUCCESS,
 INVALID_INPUT 
 };
 
-char choose_design();
-void write_design(char elem);
+char chooseSeparator();
+void showSeparator(char elem);
 void getEnter(char elem);
 bool aproove();
 void choose(int size,double arr[],char elem);
@@ -30,15 +30,15 @@ int main()
     const int m_size = 100000;
     double arr[m_size];
     int n;
-    char design_char = choose_design();
-    write_design(design_char);
-    cout << "\nInput size of array (n): ";
+    char design_char = chooseSeparator();
+    showSeparator(design_char);
+    cout << "\nInput size of array (n) between 1 and " << m_size << ": ";
     cin >> n;
     cout << endl;
 
     while(cin.fail() || n < 1 || n > m_size)
     {
-        write_design(design_char);
+        showSeparator(design_char);
         cout << "\nInvalid input. Please enter a number between 1 and " << m_size << ": ";
         clear_input();
         cin >> n;
@@ -64,11 +64,11 @@ int main()
 }
 void getEnter(char elem)	
 {
-    write_design(elem);
+    showSeparator(elem);
     cout << "\n\n";
-    write_design(elem);
+    showSeparator(elem);
 	cout << "Press Enter to finish...\n";
-    write_design(elem);
+    showSeparator(elem);
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 	cin.get(); 
@@ -106,9 +106,9 @@ void multiply(int size, double arr[],char elem)
 {
     if (size == 1)
     {
-        write_design(elem);
+        showSeparator(elem);
         cout << "\nArray consists of 1 element: " << arr[0] << "\n" << endl;
-        write_design(elem);
+        showSeparator(elem);
         return;
     }
     int max_idx = 0;
@@ -122,9 +122,9 @@ void multiply(int size, double arr[],char elem)
     }
     if((max_idx == (size - 1)) && (size != 1))
     {
-        write_design(elem);
+        showSeparator(elem);
         cout << "\nUndefined. Nothing after max element" << "\n" << endl;
-        write_design(elem);
+        showSeparator(elem);
         return;
     }
     for(int i = max_idx + 1; i < size; i++)
@@ -134,21 +134,21 @@ void multiply(int size, double arr[],char elem)
     if(result == -0)
     {
         result = 0;
-        write_design(elem);
+        showSeparator(elem);
         cout << "\nMultiplication: " << result << "\n" << endl;
-        write_design(elem);
+        showSeparator(elem);
         return;
     }
-    write_design(elem);
+    showSeparator(elem);
     cout << "\nMultiplication: " << result << "\n" << endl;
-    write_design(elem);
+    showSeparator(elem);
 }
 
 void unic_num(int size, double arr[],char elem)
 {
     if (size == 1)
     {
-        write_design(elem);
+        showSeparator(elem);
         cout << "\nArray consists of 1 element: " << arr[0] << "\n" << endl;
         return;
     }
@@ -160,7 +160,7 @@ void unic_num(int size, double arr[],char elem)
             k++;
         }
     }
-    write_design(elem);
+    showSeparator(elem);
     cout << "\nNumber of unique elements: " << k << "\n"<< endl;    
 }
 
@@ -178,7 +178,7 @@ void bubbleSort(int size,double arr[],char elem)
             }
         }
     }
-    write_design(elem);
+    showSeparator(elem);
     cout << "\nSorted (by bubble sort) array: ";
     output_arr(size,arr);
     cout << endl;
@@ -198,14 +198,14 @@ void random(int size, double arr[],char elem)
     cout << endl;
     while((cin.fail() || a > b)) 
     {
-        write_design(elem);
+        showSeparator(elem);
         cout << "\nInvalid interval!" << "\n" << endl;
-        write_design(elem);
+        showSeparator(elem);
         clear_input();
         cin >> a >> b;
     }
     srand(time(0)); 
-    write_design(elem);
+    showSeparator(elem);
     cout << "\nRandom array: ";
     for (int i = 0; i < size; i++)
     {
@@ -218,21 +218,21 @@ void random(int size, double arr[],char elem)
 void custom(int size, double arr[],char elem)
 {
     cout << "\nEnter array elements separated by spaces:" << endl;
-    write_design(elem);
+    showSeparator(elem);
     for(int i = 0; i < size; i++)
     {
     cin >> arr[i];
         while(cin.fail())
         {
-            write_design(elem);
-            cout << "\nInvalid input. Please enter double values." << "\n" << endl;
-            write_design(elem);
-            clear_input();
+            showSeparator(elem);
+            cout << "\nInvalid input. Please enter double values started with correct one." << "\n" << endl;
+            showSeparator(elem);
             if(aproove())
             {
-                write_design(elem);
+                showSeparator(elem);
                 cout << "\nEnter array elements:" << endl;
-                write_design(elem);
+                showSeparator(elem);
+                i--;
                 break;
             }
             else
@@ -241,20 +241,24 @@ void custom(int size, double arr[],char elem)
             }
         }
     }
+    cout << endl;
+    showSeparator(elem);
+    cout << "Custom array: ";
+    output_arr(size,arr);
 }
 
 void choose(int size, double arr[],char elem)
 {
     char num;
-    write_design(elem);
+    showSeparator(elem);
     cout << endl;
     cout << "How do you want to fill the array?" << endl;
     cout << "Choose an option:" << endl;
     cout << "1. Option random (write 1)" << endl;
     cout << "2. Option custom (write 2)\n" << endl;
-    write_design(elem);
+    showSeparator(elem);
     cin >> num;
-    write_design(elem);
+    showSeparator(elem);
 
     switch (num)
     {
@@ -268,7 +272,7 @@ void choose(int size, double arr[],char elem)
         if(num != '1' || num != '2' || cin.fail())
         {
             cout << "\nInvalid input. Please enter 1 or 2." << "\n" << endl;
-            write_design(elem);
+            showSeparator(elem);
             clear_input();
             if(aproove())
             {
@@ -286,6 +290,7 @@ bool aproove()
 {
     char answer;
     cout << "\nDo you want to continue? (y/n): ";
+    clear_input();
     cin >> answer;
     cout << endl;
     switch (answer)
@@ -302,7 +307,7 @@ bool aproove()
         return aproove(); 
     }
 }
-char choose_design()
+char chooseSeparator()
 {
     char elem;
     cout << "what element do you want to use for design? ";
@@ -310,7 +315,7 @@ char choose_design()
     cout << endl;    
     return elem;     
 }
-void write_design(char elem)
+void showSeparator(char elem)
 {
     for(int i = 0; i < 50; i++)
     {
