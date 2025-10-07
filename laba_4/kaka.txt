@@ -1,0 +1,212 @@
+// #include <iostream>
+// #include <cmath>
+// #include <limits>
+// #include <time.h>
+// #include <conio.h>
+
+// enum ExitCode 
+// {
+// SUCCESS,
+// INVALID_INPUT 
+// };
+
+// void interMatrix(int& m, int& n);
+// char chooseSeparator();
+// void showSeparator(char elem);
+// void getEnter(char elem);
+// bool aproove();
+// void choose(int m, int n, int** mtrx, char elem);
+// void clear_input();
+// void random(int m, int n, int** mtrx, char elem);
+// void custom(int m, int n, int** mtrx, char elem);
+// void clearMatrix(int m, int** mtrx);
+
+// int main()
+// {
+//     int m, n;
+//     char design_char = chooseSeparator();
+//     showSeparator(design_char);
+//     interMatrix(m, n); 
+
+//     int **mtrx = new int *[m];
+//     for(int i = 0; i < m; i++) {
+//         mtrx[i] = new int [n];
+//     }
+
+//     choose(m, n, mtrx, design_char); 
+
+//     getEnter(design_char);
+//     clearMatrix(m, mtrx); 
+//     return SUCCESS;
+// }
+// void getEnter(char elem)	
+// {
+//     showSeparator(elem);
+//     std::cout << "\n\n";
+//     showSeparator(elem);
+// 	std::cout << "Press Enter to finish...\n";
+//     showSeparator(elem);
+// 	std::cin.clear();
+// 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+// 	std::cin.get(); 
+// }
+
+// void random(int m, int n, int** mtrx, char elem)
+// {
+//     int a,b;
+//     std::cout << "\nSet the interval [a,b] with space: ";
+//     std::cin >> a >> b;
+//     std::cout << std::endl;
+//     while((std::cin.fail() || a > b)) 
+//     {
+//         showSeparator(elem);
+//         std::cout << "\nInvalid interval!" << "\n" << std::endl;
+//         showSeparator(elem);
+//         clear_input();
+//         std::cin >> a >> b;
+//     }
+//     srand(time(0)); 
+//     showSeparator(elem);
+//     std::cout << "\nRandom matrix: ";
+//     for(int i = 0; i < m; i++)
+//     {
+//         for(int j = 0; j < n; j++)
+//         {
+//             mtrx[i][j] = a + rand() % (b - a + 1);
+//             std::cout << mtrx[i][j] << " ";
+//         }
+//         std::cout << "\n";
+//     }
+//     std::cout << "\n" << std::endl;
+// }
+
+// void custom(int m, int n, int** mtrx, char elem)
+// {
+//     std::cout << "\nEnter matrix elements separated by spaces:" << std::endl;
+//     showSeparator(elem);
+//     for(int i = 0; i < m; i++)
+//     {
+//         std::cout << "Enter " << n << " elements for row " << i + 1 << ": ";
+//         for(int j = 0; j < n; j++)
+//         {
+//             std::cin >> mtrx[i][j];
+//             while(std::cin.fail())
+//             {
+//                 showSeparator(elem);
+//                 std::cout << "\nInvalid input. Please enter a number." << std::endl;
+//                 showSeparator(elem);
+//                 clear_input(); 
+//                 std::cout << "Please re-enter the element for row " << i + 1 << ", column " << j + 1 << ": ";
+//                 std::cin >> mtrx[i][j]; 
+//             }
+//         }
+//     }
+// }
+
+// void choose(int m, int n, int** mtrx, char elem)
+// {
+//     char num;
+//     showSeparator(elem);
+//     std::cout << std::endl;
+//     std::cout << "How do you want to fill the matrix?" << std::endl;
+//     std::cout << "Choose an option:" << std::endl;
+//     std::cout << "1. Option random (write 1)" << std::endl;
+//     std::cout << "2. Option custom (write 2)\n" << std::endl;
+//     showSeparator(elem);
+//     std::cin >> num;
+//     showSeparator(elem);
+
+//     switch (num)
+//     {
+//     case '1':
+//         random(m, n, mtrx, elem);
+//         break;
+//     case '2':
+//         custom(m, n, mtrx, elem);
+//         break;
+//     default:
+//         if(num != '1' || num != '2' || std::cin.fail())
+//         {
+//             std::cout << "\nInvalid input. Please enter 1 or 2." << "\n" << std::endl;
+//             showSeparator(elem);
+//             clear_input();
+//             if(aproove())
+//             {
+//                 choose(m, n, mtrx, elem);
+//             } 
+//             else
+//             {
+//                 exit(INVALID_INPUT);
+//             } 
+//         }
+//     }
+// }
+
+// bool aproove()
+// {
+//     char answer;
+//     std::cout << "\nDo you want to continue? (y/n): ";
+//     clear_input();
+//     std::cin >> answer;
+//     std::cout << std::endl;
+//     switch (answer)
+//     {
+//     case 'y':
+//     return true;
+//         break;
+//     case 'n':
+//     return false;
+//         break;
+//     default:
+//         std::cout << "Invalid input. Please enter 'y' or 'n'." << std::endl;
+//         clear_input();
+//         return aproove(); 
+//     }
+// }
+// char chooseSeparator()
+// {
+//     char elem;
+//     std::cout << "what element do you want to use for design? ";
+//     elem = getche(); 
+//     std::cout << std::endl;    
+//     return elem;     
+// }
+// void showSeparator(char elem)
+// {
+//     for(int i = 0; i < 50; i++)
+//     {
+//         std::cout << elem;
+//     }  
+//     std::cout << std::endl;
+// }
+// void interMatrix(int& m, int& n) 
+// {
+//     std::cout << "Enter m-lines: ";
+//     std::cin >> m;
+//     std::cout << "And n-columns: ";
+//     std::cin >> n;
+//     if(std::cin.fail() || n < 1 || m < 1)
+//     {
+//         std::cout << "\nInvalid input. Please enter only positive integer values." << "\n" << std::endl;
+//         clear_input();
+//         if(aproove())
+//         {
+//             interMatrix(m, n); 
+//         } 
+//         else
+//         {
+//             exit(INVALID_INPUT);
+//         }
+//     }
+// }
+// void clearMatrix(int m, int** mtrx)
+// {
+//     for(int i = 0; i < m; i++)
+//     delete [] mtrx[i];
+//     delete [] mtrx;
+// }
+// inline void clear_input()
+// {
+//     cin.clear();
+// 	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+// }

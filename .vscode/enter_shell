@@ -14,3 +14,5 @@
 
 	SetConsoleOutputCP(1251);
     setlocale(LC_ALL,"Russian");
+
+system("pause"); тоже самое что getEnter(); но менее оптимизаровано и нет кросплалтформенности
