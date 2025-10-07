@@ -53,7 +53,6 @@ bool aproove()
 {
     char answer;
     cout << "\nDo you want to continue? (y/n): ";
-    //clear_input();
     cin >> answer;
     cout << endl;
     switch (answer)
@@ -105,15 +104,12 @@ void clearMatrix(int m, int** mtrx)
 void choose(int m, int n, int** mtrx)
 {
     char num;
-    //showSeparator(elem);
     cout << endl;
     cout << "How do you want to fill the matrix?" << endl;
     cout << "Choose an option:" << endl;
     cout << "1. Option random (write 1)" << endl;
     cout << "2. Option custom (write 2)\n" << endl;
-    //showSeparator(elem);
     cin >> num;
-    //showSeparator(elem);
 
     switch (num)
     {
@@ -127,7 +123,6 @@ void choose(int m, int n, int** mtrx)
         if(num != '1' || num != '2' || cin.fail())
         {
             std::cout << "\nInvalid input. Please enter 1 or 2." << "\n" << endl;
-            //showSeparator(elem);
             clear_input();
             if(aproove())
             {
@@ -148,14 +143,11 @@ void random(int m, int n, int** mtrx)
     cout << endl;
     while((cin.fail() || a > b)) 
     {
-        //showSeparator(elem);
         cout << "\nInvalid interval!" << "\n" << endl;
-        //showSeparator(elem);
         clear_input();
         cin >> a >> b;
     }
     srand(time(0)); 
-    //showSeparator(elem);
     cout << "\nRandom matrix:\n";
     for(int i = 0; i < m; i++)
     {
@@ -163,7 +155,6 @@ void random(int m, int n, int** mtrx)
         {
             mtrx[i][j] = a + rand() % (b - a + 1);
             cout << setw(12) << mtrx[i][j];
-            //cout << mtrx[i][j] << "\t";
         }
         cout << "\n";
     }
@@ -173,7 +164,6 @@ void random(int m, int n, int** mtrx)
 void custom(int m, int n, int** mtrx)
 {
     cout << "\nEnter matrix elements separated by spaces:" << endl;
-    //showSeparator(elem);
     for(int i = 0; i < m; i++)
     {
         cout << "Enter " << n << " elements for row " << i + 1 << ": ";
@@ -182,9 +172,7 @@ void custom(int m, int n, int** mtrx)
             cin >> mtrx[i][j];
             while(cin.fail())
             {
-                //showSeparator(elem);
                 cout << "\nInvalid input. Please enter a number." << endl;
-                //showSeparator(elem);
                 clear_input(); 
                 cout << "Please re-enter the element for row " << i + 1 << ", column " << j + 1 << ": ";
                 cin >> mtrx[i][j]; 
