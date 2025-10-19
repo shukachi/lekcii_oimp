@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include <conio.h>
+#include <windows.h>
 using namespace std;
 
 enum ExitCode
 {
     SUCCESS,
-    INVALID_INPUT
+    WARNING
 };
 
 void clear_input();
@@ -22,11 +22,15 @@ int digit_number(string* all_words, int& word_count);
 string sort_str(int& digit_count, int& other_count, string* digit_words, string* other_words, char& elem);
 void full_digit_words_AND_other_words(string* digit_words, string* other_words, string* all_words, int& word_count);
 void separate_str(string* all_words, string& str, char& elem);
+void warning(string& str, char& elem);
 
 int main()
 {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     char elem = elemSepartor();
     string str = input_str(elem);
+    warning(str,elem);
     cout << "Your string:" << endl;
     output_str(elem, str);
     int word_count = words_number(str, elem);
@@ -82,10 +86,20 @@ bool aproove()
 char elemSepartor()
 {
     cout << "Enter punctuation mark: ";
-    char separator;
-    separator = getche();
-    cout << endl;  
-    return separator;
+    string line;
+    while (true)
+    {
+        getline(cin, line);
+        if (line.length() == 1)
+        {
+            return line[0]; 
+        }
+        else
+        {
+            cout << "Invalid input. Please enter exactly one char!\n";
+            cout << "Enter punctuation mark: ";
+        }
+    }
 }
 
 bool is_all_digits(const string& s)
@@ -120,12 +134,13 @@ inline void output_str(char elem, string str)
 
 string input_str(char& elem)
 {
-    cout << "Enter words:\n";
+    cout << "Enter word without separator:";
     cout << endl;
     string str,newstr;
     cin >> str;
     while (aproove())
     {
+        cout << "Enter word without separator:\n";
         cin >> newstr;
         str = str + elem + newstr; 
     }
@@ -223,4 +238,15 @@ void separate_str(string* all_words, string& str, char& elem)
         start_pos = end_pos + 1;
     }
     all_words[current_word_idx] = str.substr(start_pos); 
+}
+
+void warning(string& str, char& elem)
+{
+    if(str.find_first_not_of(elem,0) == string::npos)
+    {
+        cout << "String consists of only elements-separators" << endl;
+        cout << "Task cant be reached!" << endl;
+        system("pause");
+        exit(0);
+    }
 }
