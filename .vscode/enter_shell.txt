@@ -1,0 +1,30 @@
+	// Ожидание нажатия клавиши перед выходом
+	void getEnter()	{
+	cout << "\n\nНажмите Enter для завершения...";
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+	cin.get(); 
+	}
+
+	enum ExitCode {
+	SUCCESS,
+	SPECIAL_CASE_ZERO,
+	INVALID_INPUT 
+};
+
+	SetConsoleOutputCP(1251);
+    setlocale(LC_ALL,"Russian");
+
+system("pause"); тоже самое что getEnter(); но менее оптимизаровано и нет кросплалтформенности
+system("cls");
+cout << "\033[2J\033[1;1H";
+\033 - это восьмеричное представление ASCII-символа ESC (Escape)
+[ - "Control Sequence Introducer" (CSI)
+2 — это параметр для команды.
+J — это сама команда, которая означает "Erase in Display" (Стереть на экране)
+0J — стереть от курсора до конца экрана.
+1J — стереть от курсора до начала экрана.
+2J — стереть весь экран
+[ — снова символ CSI.
+1;1 — это два параметра, разделённые точкой с запятой. Первый 1 — это номер строки, второй 1 — номер столбца.
+H — это команда "Cursor Position" (Позиция курсора).
